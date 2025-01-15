@@ -29,12 +29,14 @@ import { ModeToggle } from "./mode/light-dark";
 
 export function NavUser({
   user,
+  onLogoutClick,
 }: {
   user: {
     name: string;
     email: string;
     avatar: string;
   };
+  onLogoutClick: () => void; // Added handler for the modal
 }) {
   const { isMobile } = useSidebar();
 
@@ -101,7 +103,7 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOut />
+              <LogOut onClick={onLogoutClick} />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
