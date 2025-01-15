@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- 四角形 -->
+  <rect id="square1" x="20" y="20" width="80" height="80" fill="blue" />
+  <rect id="square2" x="120" y="20" width="80" height="80" fill="green" />
+
+  <!-- 丸 -->
+  <circle id="circle1" cx="80" cy="180" r="40" fill="red" />
+  <circle id="circle2" cx="180" cy="180" r="40" fill="orange" />
+
+  <!-- 三角形 -->
+  <polygon id="triangle1" points="280,60 260,100 300,100" fill="purple" />
+  <polygon id="triangle2" points="320,120 300,160 340,160" fill="pink" />
+
+  <!-- 凹凸形状 -->
+  <path
+    id="bumpy1"
+    d="M50 300 C70 270, 90 330, 110 300 S150 270, 170 300"
+    stroke="black"
+    fill="none"
+    stroke-width="2"
+  />
+  <path
+    id="bumpy2"
+    d="M200 300 C220 270, 240 330, 260 300 S290 270, 310 300"
+    stroke="black"
+    fill="none"
+    stroke-width="2"
+  />
+
+  <!-- テキスト -->
+  <text id="label1" x="50" y="350" font-size="16" fill="black">Label 1</text>
+  <text id="label2" x="200" y="350" font-size="16" fill="black">Label 2</text>
+</svg>
