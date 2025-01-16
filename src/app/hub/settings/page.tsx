@@ -12,8 +12,32 @@ import {
 } from "@/components/ui/table";
 import { CustomBreadcrumbItem } from "@/types/CustomBreadcrumb.types";
 import { CustomBreadcrumb } from "@/components/CustomBreadcrumb/CustomBreadcrumb";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+
+// `axios` インスタンスの作成（必要に応じて）
+const apiClient = axios.create({
+  baseURL: "https://jsonplaceholder.typicode.com",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// データ取得
+const getTodos = async () => {
+  const response = await apiClient.get("/posts");
+  return response.data;
+};
+
+// 新規データ登録
+const postTodo = async (newTodo: {
+  title: string;
+  body: string;
+  userId: number;
+}) => {
+  const response = await apiClient.post("/posts", newTodo);
+  return response.data;
+};
 
 const invoices = [
   {
@@ -66,6 +90,30 @@ const breadcrumbItems: CustomBreadcrumbItem[] = [
 ];
 
 const StarredPage = () => {
+  // Access the client
+  const queryClient = useQueryClient();
+
+  // Queries
+  const {
+    data: todos,
+    status,
+    isFetching,
+  } = useQuery({
+    queryKey: ["todos"],
+    queryFn: getTodos,
+  });
+
+  if (isFetching) return "loading...";
+  console.log(todos);
+
+  // // Mutations
+  // const mutation = useMutation({
+  //   mutationFn: postTodo,
+  //   onSuccess: () => {
+  //     // Invalidate and refetch
+  //     queryClient.invalidateQueries({ queryKey: ["todos"] });
+  //   },
+  // });
   // const { data, status, error, isFetching } = useQuery({
   //   queryKey: ["posts"],
   //   queryFn: async () => {
